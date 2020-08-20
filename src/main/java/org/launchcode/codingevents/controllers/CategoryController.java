@@ -1,7 +1,7 @@
 package org.launchcode.codingevents.controllers;
 
-import org.launchcode.codingevents.data.EventCategoryRepository;
-import org.launchcode.codingevents.models.EventCategory;
+import org.launchcode.codingevents.data.CategoryRepository;
+import org.launchcode.codingevents.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,36 +18,36 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("eventCategories")
-public class EventCategoryController {
+public class CategoryController {
 
     @Autowired
-    private EventCategoryRepository eventCategoryRepository;
+    private CategoryRepository categoryRepository;
 
     @GetMapping
     public String displayAllCategories(Model model) {
         model.addAttribute("title", "All Categories");
-        model.addAttribute("categories", eventCategoryRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "eventCategories/index";
     }
 
     @GetMapping("create")
     public String renderCreateEventCategoryForm(Model model) {
         model.addAttribute("title", "Create Category");
-        model.addAttribute(new EventCategory());
+        model.addAttribute(new Category());
         return "eventCategories/create";
     }
 
     @PostMapping("create")
-    public String processCreateEventCategoryForm(@Valid @ModelAttribute EventCategory eventCategory,
+    public String processCreateEventCategoryForm(@Valid @ModelAttribute Category category,
                                                  Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Category");
-            model.addAttribute(new EventCategory());
+            model.addAttribute(new Category());
             return "eventCategories/create";
         }
 
-        eventCategoryRepository.save(eventCategory);
+        categoryRepository.save(category);
         return "redirect:";
     }
 
