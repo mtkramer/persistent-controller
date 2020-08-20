@@ -26,13 +26,13 @@
     </div>
     <div class="form-group">
         <label>Category
-        <select th:field="${event.category}">
+        <select th:field="${event.eventCategory}">
             <option th:each="category : ${categories}"
                     th:value="${category.id}"
                     th:text="${category.name}"
             ></option>
         </select>
-            <p class="error" th:errors="${event.category}"></p>
+            <p class="error" th:errors="${event.eventCategory}"></p>
         </label>
     </div>
     <div class="form-group">

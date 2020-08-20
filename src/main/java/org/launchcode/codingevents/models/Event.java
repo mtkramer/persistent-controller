@@ -26,13 +26,13 @@ public class Event extends AbstractEntity {
 
     @ManyToOne
     @NotNull(message = "Category is required")
-    private Category category;
+    private EventCategory eventCategory;
 
-    public Event(String name, String description, String contactEmail, Category category) {
+    public Event(String name, String description, String contactEmail, EventCategory eventCategory) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.category = category;
+        this.eventCategory = eventCategory;
     }
 
     public Event() {}
@@ -55,8 +55,8 @@ public class Event extends AbstractEntity {
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }
-    public Category getCategory() { return category; }
-    public void setCategory(Category category) { this.category = category; }
+    public EventCategory getEventCategory() { return eventCategory; }
+    public void setEventCategory(EventCategory eventCategory) { this.eventCategory = eventCategory; }
 
     @Override
     public String toString() {
